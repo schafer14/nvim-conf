@@ -21,7 +21,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+vim.wo.signcolumn = "yes"
 
 vim.opt.cmdheight = 1
 vim.opt.updatetime = 50

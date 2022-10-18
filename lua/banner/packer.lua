@@ -12,33 +12,31 @@ return require('packer').startup(function()
   use 'sbdchd/neoformat'
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
+  use("neovim/nvim-lspconfig")
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-buffer")
+  use "hrsh7th/nvim-cmp" --completion
+  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  use("onsails/lspkind-nvim")
+  use("nvim-lua/lsp_extensions.nvim")
+  use("glepnir/lspsaga.nvim")
+  use("simrat39/symbols-outline.nvim")
+  use("L3MON4D3/LuaSnip")
+  use("saadparwaiz1/cmp_luasnip")
+  use("nvim-treesitter/nvim-treesitter", {
+    run = ":TSUpdate"
+  })
+  use 'nvim-treesitter/playground'
+
 
   
-  -- use 'tpope/vim-fugitive'
-  -- use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'hrsh7th/nvim-cmp'
-  -- -- use { 'camspiers/snap', rocks = {'fyz'} }
-  -- -- use 'neovim/nvim-lspconfig'
-  -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  -- use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
-  -- use 'tpope/vim-commentary'
-  -- use 'f-person/git-blame.nvim'
-  -- -- use 'preservim/tagbar'
-  -- -- use 'ctrlpvim/ctrlp.vim'
-  -- use 'dense-analysis/ale'
-  -- use {'neoclide/coc.nvim', branch = 'release'}
+  use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-fugitive'
 
-  -- use 'vim-test/vim-test'
-  -- -- use 'hashivim/vim-terraform'
-  -- use { 'ibhagwan/fzf-lua',
-  --   -- optional for icon support
-  --   requires = { 'kyazdani42/nvim-web-devicons' }
-  -- }
-  -- use 'ThePrimeagen/vim-be-good'
-  -- use {
-  --   'glacambre/firenvim',
-  --   run = function() vim.fn['firenvim#install'](0) end 
-  -- }
+  use 'GutenYe/json5.vim'
+  use 'vim-test/vim-test'
+  use 'ThePrimeagen/git-worktree.nvim'
 
-  -- use 'GutenYe/json5.vim'
+  use 'MunifTanjim/nui.nvim'
 end)
