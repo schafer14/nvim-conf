@@ -1,0 +1,17 @@
+# this is a comment
+snippet test write a test file
+	func Test${1}(t *testing.T) {
+
+		t.Parallel()
+
+		// Arrange
+		is := is.New(t)
+		ctx := context.Background()
+		${2:// Code}
+
+		// Act
+		${0}
+
+		// Assert
+	
+	}

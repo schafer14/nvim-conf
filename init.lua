@@ -6,3 +6,5 @@ require("banner.autosave")
 
 
 require("gitemoji")
+require("bscript")
+require("bscript-tele")

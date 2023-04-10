@@ -5,8 +5,7 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-  -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'}, {"kyazdani42/nvim-web-devicons"} }
   }
 
   use 'sbdchd/neoformat'
@@ -23,20 +22,35 @@ return require('packer').startup(function()
   use("simrat39/symbols-outline.nvim")
   use("L3MON4D3/LuaSnip")
   use("saadparwaiz1/cmp_luasnip")
-  use("nvim-treesitter/nvim-treesitter", {
-    run = ":TSUpdate"
-  })
-  use 'nvim-treesitter/playground'
+  use("nvim-treesitter/nvim-treesitter")
+  use("nvim-treesitter/playground")
 
 
   
-  use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
+  -- use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua' -- recommanded if need floating window support
+
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
 
   use 'GutenYe/json5.vim'
   use 'vim-test/vim-test'
-  use 'ThePrimeagen/git-worktree.nvim'
 
-  use 'MunifTanjim/nui.nvim'
+  use "akinsho/toggleterm.nvim"
+  use "tpope/vim-rhubarb"
+
+  -- Lua
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  }
+  use 'airblade/vim-gitgutter'
+  use 'f-person/git-blame.nvim'
+  use "p00f/nvim-ts-rainbow"
+  use 'edwinb/idris2-vim'
+  use 'vmchale/dhall-vim'
+
+  use 'purescript-contrib/purescript-vim'
+
 end)

@@ -10,6 +10,7 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 
 local source_mapping = {
+	luasnip = "[Snip]",
 	nvim_lsp = "[LSP]",
 	nvim_lua = "[Lua]",
 	cmp_tabnine = "[TN]",
@@ -52,9 +53,9 @@ cmp.setup({
 	},
   sources = cmp.config.sources({
     
-		{ name = "cmp_tabnine" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "cmp_tabnine" },
   })
 })
 
@@ -77,7 +78,7 @@ tabnine.setup({
 
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
-		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		on_attach = function()
 			nnoremap("gd", function() vim.lsp.buf.definition() end)
 			nnoremap("K", function() vim.lsp.buf.hover() end)
@@ -109,7 +110,13 @@ require("lspconfig").gopls.setup(config({
 	},
 }))
 
+require'lspconfig'.dhall_lsp_server.setup{}
+
+
 require'lspconfig'.racket_langserver.setup{}
+
+require'lspconfig'.terraform_lsp.setup{}
+
 
 -- who even uses this?
 require('lspconfig')['rust_analyzer'].setup{
@@ -154,3 +161,4 @@ require("luasnip.loaders.from_vscode").lazy_load({
 	include = nil, -- Load all languages
 	exclude = {},
 })
+

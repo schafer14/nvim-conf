@@ -6,7 +6,6 @@ local action_state = require "telescope.actions.state"
 
 local M = {}
 
-
 -- our picker function: colors
 function M.gitemoji(opts)
   opts = opts or {}
