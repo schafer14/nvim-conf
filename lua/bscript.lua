@@ -25,8 +25,9 @@ local get_command = function(bufnr, currLine)
   local root = get_root(bufnr)
 
   local details = {}
+  print(vim.inspect(query:iter_matches(root, bufnr, 0, -1)))
   for id, match, metadata in query:iter_matches(root, bufnr, 0, -1) do
-    if vim.treesitter.is_in_node_range(match[3], currLine) then
+    if vim.treesitter.is_in_node_range(match[3], currLine, 0) then
       local row1, col1, row2, col2 = match[2]:range() -- range of the capture
       details["start"] = row1
       details["finish"] = row2 

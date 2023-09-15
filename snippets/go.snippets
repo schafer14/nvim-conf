@@ -15,3 +15,123 @@ snippet test write a test file
 		// Assert
 	
 	}
+
+
+snippet hacker_rank_template builds a template for a hacker rank file
+	package ${1:package_name}
+
+	import (
+		"fmt"
+		"io"
+	)
+
+	// Input is a Go representation of the problem input.
+	type Input struct {}
+
+	// Output is a Go representation of the problems output/result.
+	type Output struct {}
+
+	// write a formatted response to a io.Writer. For 
+	// hacker rank use os.Stdout.
+	func write(result Output, w io.Writer) {
+
+		template := "%#v"
+
+		fmt.Fprintf(w, template, result)
+	}
+
+	// $2 solves the hacker rank problem using go types. 
+	// To interface with the hr spec pipe this output into the 'write' function.
+	func ${2:FuncName}(input Input) Output {
+
+		${0}
+
+		return Output{}
+	}
+
+snippet hacker_rank_test builds a template for a hacker rank test
+	package ${1:some_package}_test
+
+	import (
+		"${3:hr/problems/}$1"
+		"testing"
+
+		"github.com/google/go-cmp/cmp"
+	)
+
+	type testDefition struct {
+		in $1.Input 
+		out $1.Output 
+		name string
+	}
+
+	var tests = []testDefition{
+		{
+			in: $1.Input{},
+			out: $1.Output{},
+			name: "Hacker Rank example: 1",
+		},
+		$0
+	}
+
+	func Test${2:FuncName}(t *testing.T) {
+		
+		for _, tt := range tests {
+			t.Run(tt.name, func(t *testing.T) {
+				
+				want := tt.out
+				got := $1.$2(tt.in)
+
+				if diff := cmp.Diff(want, got); diff != "" {
+					t.Errorf("$1.$2() mismatch (-want +got):\n%s", diff)
+				}
+
+			})
+		}
+	}
+
+snippet hacker_rank_readers standard in readers that are helpful
+	type StdInReader struct {
+    ReadStrings func() []string
+    ReadInt64s func() []int64
+    ReadInts func() []int
+	}
+
+	func NewStdInReader(r io.Reader) StdInReader {
+    in := bufio.NewReader(r)
+    
+    
+    readStrs := func() []string {
+        lineText, _, _ := in.ReadLine()
+        parts := strings.Split(string(lineText), " ")
+       
+        return parts
+    } 
+    
+    readInt64s := func() []int64 {
+        strs := readStrs()
+        result := []int64{}
+        for _, part := range strs {
+            num, _ := strconv.ParseInt(part, 10, 64)    
+            result = append(result, num)
+        }
+        return result 
+    }
+    
+     readInts := func() []int {
+        strs := readStrs()
+        result := []int{}
+        for _, part := range strs {
+            num, _ := strconv.ParseInt(part, 10, 64)    
+            result = append(result, int(num))
+        }
+        return result 
+    }
+    
+    return StdInReader{
+        ReadStrings: readStrs,
+        ReadInts: readInts,
+        ReadInt64s: readInt64s,
+    }
+	}
+
